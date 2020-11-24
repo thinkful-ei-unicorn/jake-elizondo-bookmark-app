@@ -1,0 +1,23 @@
+{
+  "name": "bookmark-app-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jakeelizondo/bookmark-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jakeelizondo/bookmark-app/issues"
+  },
+  "homepage": "https://github.com/jakeelizondo/bookmark-app#readme",
+  "dependencies": {
+    "jquery": "^3.5.1"
+  }
+}
