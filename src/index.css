@@ -1,0 +1,104 @@
+.header {
+  text-align: center;
+}
+
+/* list main view stylings */
+
+.main-buttons {
+  display: flex;
+  justify-content: space-around;
+  background-color: lightskyblue;
+  padding: 10px;
+}
+
+.bookmark-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-flow: column;
+  background-color: lightpink;
+}
+
+.bookmark-info {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: lightgrey;
+  margin: 10px 10px 0px 10px;
+  padding: 5px;
+}
+
+.listing-rating-info {
+  display: flex;
+  justify-content: space-between;
+  background-color: lightblue;
+}
+
+.rating-total {
+  padding: 0px 5px;
+}
+
+.bookmark-name {
+  background-color: lightgreen;
+}
+
+/* styles for details addition */
+
+.bookmark-details-header {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: lightyellow;
+  margin: 0px 10px 0px 10px;
+  padding: 5px;
+}
+
+.bookmark-details-description {
+  background-color: lightyellow;
+  margin: 0px 10px 10px 10px;
+  padding: 5px;
+  text-align: center;
+}
+
+/* add bookmark page stylings */
+
+.add-bookmark {
+  display: flex;
+  flex-direction: column;
+  background-color: lightgreen;
+  padding: 10px;
+}
+
+.add-bookmark-form {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-evenly;
+}
+
+.add-bookmark-form > * {
+  margin-top: 10px;
+}
+
+.add-form-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: blue;
+  padding: 10px 0px;
+}
+
+/* error stylings */
+
+.error-content {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: red;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#cancel-error {
+  width: 50px;
+}
