@@ -20,6 +20,10 @@
   background-color: lightpink;
 }
 
+li:last-child {
+  margin-bottom: 10px;
+}
+
 .bookmark-info {
   display: flex;
   flex-flow: row;
