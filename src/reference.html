@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Bookmark App</title>
+  </head>
+  <body id="root">
+    \
+    <!--    HEADER ON EVERY PAGE    -->
+    <header>
+      <h1 class="header">My Bookmarks</h1>
+    </header>
+    <hr />
+
+    <!--     FOLLOWING IS CONTENTS OF MAIN TAG     -->
+
+    <!--   INITIAL VIEW HTML WIREFRAME   -->
+
+    <section class="initial-view">
+      <div class="main-buttons">
+        <button class="new-bookmark-button">ADD NEW</button>
+        <div class="ratings-select">
+          <label for="rating-options">Filter By Rating:</label>
+          <select name="rating-options" id="rating-options" class="filter-by">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+          <button class="filter-button">Filter</button>
+        </div>
+      </div>
+
+      <br />
+      <hr />
+
+      <!-- LIST WIREFRAME   -->
+
+      <ul class="bookmark-list">
+        <li class="js-bookmark-list-element" data-item-id="bookmark-id-here">
+          <div class="bookmark-info">
+            <p class="bookmark-name">Bookmark Name</p>
+            <div class="listing-rating-info">
+              <p>Rating:</p>
+              <p class="rating-total">XX</p>
+            </div>
+            <div class="bookmark-listing-options">
+              <button class="bookmark-item-toggle js-bookmark-item-toggle">
+                View Details
+              </button>
+            </div>
+          </div>
+          <div class="bookmark-details"></div>
+        </li>
+        <li class="js-bookmark-list-element" data-item-id="bookmark-id-here">
+          <div class="bookmark-info">
+            <p class="bookmark-name">Bookmark Name</p>
+            <div class="listing-rating-info">
+              <p>Rating:</p>
+              <p class="rating-total">XX</p>
+            </div>
+            <div class="bookmark-listing-options">
+              <button class="bookmark-item-toggle js-bookmark-item-toggle">
+                View Details
+              </button>
+            </div>
+          </div>
+          <div class="bookmark-details"></div>
+        </li>
+      </ul>
+    </section>
+
+    <br />
+    <hr />
+
+    <!--   VIEW DETAILS HTML WIREFRAME   -->
+
+    <section class="details-view">
+      <ul class="bookmark-list">
+        <li class="js-bookmark-list-element" data-item-id="bookmark-id-here">
+          <div class="bookmark-info">
+            <p class="bookmark-name">Bookmark Name</p>
+            <div class="listing-rating-info">
+              <p>Rating:</p>
+              <p class="rating-total">XX</p>
+            </div>
+            <div class="bookmark-listing-options">
+              <button class="bookmark-item-toggle js-bookmark-item-toggle">
+                View Details
+              </button>
+            </div>
+          </div>
+          <div class="bookmark-details"></div>
+        </li>
+
+        <!--  ITEM WITH DESCRIPTION INJECTION HERE   -->
+
+        <li class="js-bookmark-list-element" data-item-id="bookmark-id-here">
+          <div class="bookmark-info">
+            <p class="bookmark-name">Bookmark Name</p>
+            <div class="listing-rating-info">
+              <p>Rating:</p>
+              <p class="rating-total">XX</p>
+            </div>
+            <div class="bookmark-listing-options">
+              <button class="bookmark-item-toggle js-bookmark-item-toggle">
+                View Details
+              </button>
+            </div>
+          </div>
+          <div class="bookmark-details">
+            <div class="bookmark-details-header">
+              <button class="visit-site-url">Visit Bookmark Site</button>
+              <button class="delete-bookmark">Delete this Bookmark</button>
+              <div class="listing-rating-info">
+                <p>Rating:</p>
+                <p class="rating-total">XX</p>
+              </div>
+            </div>
+            <div class="bookmark-details-description">
+              <p>
+                Description: I'm baby pinterest helvetica wolf lomo cray DIY
+                palo santo. Pork belly hell of fam typewriter occupy tattooed
+                woke salvia tousled. Yuccie leggings raw denim bushwick, tilde
+                pok pok palo santo drinking vinegar four dollar toast next
+                level. Sartorial retro tacos marfa chia lyft unicorn. Fanny pack
+                kickstarter letterpress before they sold out irony. Brooklyn
+                asymmetrical humblebrag gentrify. Four loko listicle 3 wolf moon
+                cray ugh, irony DIY intelligentsia chartreuse.
+              </p>
+              <button class="close">Close</button>
+            </div>
+          </div>
+        </li>
+        <li class="js-bookmark-list-element" data-item-id="bookmark-id-here">
+          <div class="bookmark-info">
+            <p class="bookmark-name">Bookmark Name</p>
+            <div class="listing-rating-info">
+              <p>Rating:</p>
+              <p class="rating-total">XX</p>
+            </div>
+            <div class="bookmark-listing-options">
+              <button class="bookmark-item-toggle js-bookmark-item-toggle">
+                View Details
+              </button>
+            </div>
+          </div>
+          <div class="bookmark-details"></div>
+        </li>
+      </ul>
+    </section>
+
+    <br />
+    <hr />
+
+    <!--     ADD BOOKMARK WIREFRAME     -->
+
+    <section class="add-bookmark">
+      <div class="add-bookmark-inputs">
+        <form
+          action="submit"
+          class="add-bookmark-form"
+          id="add-new-bookmark-form"
+        >
+          <label for="new-bookmark-name">Name your bookmark:</label>
+          <input type="text" name="new-bookmark-name" id="new-name-input" />
+          <label for="new-url">Add new bookmark URL:</label>
+          <input type="text" name="new-url" id="new-url-input" />
+          <label for="new-rating">Rate this bookmark:</label>
+          <select name="new-rating" id="new-rating" class="new-rating-select">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+          <label for="new-bookmark-description"
+            >Add a bookmark description (optional)</label
+          >
+          <textarea
+            name="new-bookmark-description"
+            id="new-bookmark-description"
+            cols="30"
+            rows="10"
+          ></textarea>
+        </form>
+      </div>
+      <div class="add-form-buttons">
+        <button class="cancel-add-bookmark">Cancel</button>
+        <button class="create-bookmark">Create</button>
+      </div>
+    </section>
+
+    <br />
+    <hr />
+
+    <!--     ADD FORM WITH ERROR SECTION     -->
+    <section class="add-bookmark">
+      <div class="error-content">
+        <p class="error-message">ERROR MESSAGE HERE</p>
+        <button id="cancel-error">X</button>
+      </div>
+      <div class="add-bookmark-inputs">
+        <form
+          action="submit"
+          class="add-bookmark-form"
+          id="add-new-bookmark-form"
+        >
+          <label for="new-bookmark-name">Name your bookmark:</label>
+          <input type="text" name="new-bookmark-name" id="new-name-input" />
+          <label for="new-url">Add new bookmark URL:</label>
+          <input type="text" name="new-url" id="new-url-input" />
+          <label for="new-rating">Rate this bookmark:</label>
+          <select name="new-rating" id="new-rating" class="new-rating-select">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+          <label for="new-bookmark-description"
+            >Add a bookmark description (optional)</label
+          >
+          <textarea
+            name="new-bookmark-description"
+            id="new-bookmark-description"
+            cols="30"
+            rows="10"
+          ></textarea>
+        </form>
+      </div>
+      <div class="add-form-buttons">
+        <button class="cancel-add-bookmark">Cancel</button>
+        <button class="create-bookmark">Create</button>
+      </div>
+    </section>
+  </body>
+</html>

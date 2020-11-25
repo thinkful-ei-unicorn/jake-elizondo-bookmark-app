@@ -4,6 +4,10 @@
 
 /* list main view stylings */
 
+.bookmark-main {
+  background-color: green;
+}
+
 .main-buttons {
   display: flex;
   justify-content: space-around;
