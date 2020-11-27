@@ -26,6 +26,13 @@ const findAndUpdate = function (id, object) {
   Object.assign(target, object);
 };
 
+const findAndDelete = (id) => {
+  let itemToDelete = findById(id);
+  let index = items.indexOf(itemToDelete);
+
+  items.splice(index, 1);
+};
+
 export default {
   items,
   adding,
@@ -34,4 +41,5 @@ export default {
   addBookmark,
   findById,
   findAndUpdate,
+  findAndDelete,
 };

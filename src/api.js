@@ -12,6 +12,13 @@ const postBookmarks = function (object) {
   });
 };
 
+const deleteBookmark = function (id) {
+  return bookmarkApiFetch(`${BASE_URL}/bookmarks/${id}`, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+  });
+};
+
 function bookmarkApiFetch(...args) {
   let error;
   return fetch(...args)
@@ -35,4 +42,5 @@ function bookmarkApiFetch(...args) {
 export default {
   getBookmarks,
   postBookmarks,
+  deleteBookmark,
 };

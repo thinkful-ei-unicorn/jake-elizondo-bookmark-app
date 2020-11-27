@@ -101,6 +101,47 @@ const generateAddNewBookMark = function () {
     </section>`;
 };
 
+const generateAddNewBookMarkWithError = () => {
+  return `<div class="error-content">
+  <p class="error-message">${store.error}</p>
+  <button id="cancel-error">X</button>
+</div><section class="add-bookmark">
+<div class="add-bookmark-inputs">
+  <form
+    class="add-bookmark-form"
+    id="add-new-bookmark-form"
+  >
+    <label for="new-name-input">Name your bookmark:</label>
+    <input type="text" name="title" id="new-name-input" placeholder="Google" required/>
+    <label for="new-url-input">Add new bookmark URL (please include http:// or https://):</label>
+    <input type="text" name="url" id="new-url-input" placeholder="https://google.com" required/>
+    <label for="new-rating">Rate this bookmark:</label>
+    <select name="rating" id="new-rating" class="new-rating-select" default="1" required>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+    <label for="new-bookmark-description"
+      >Add a bookmark description (optional)</label
+    >
+    <textarea
+      name="desc"
+      id="new-bookmark-description"
+      default="null"
+      cols="30"
+      rows="10"
+    ></textarea>
+    <div class="add-form-buttons">
+  <button class="cancel-add-bookmark">Cancel</button>
+  <button type="submit" class="create-bookmark">Create</button>
+</div>
+  </form>
+</div>
+</section>`;
+};
+
 // ************* BOOKMARK STRING GENERATOR ********** //
 
 const generateBookmarkString = function (bookmarkArray) {
@@ -136,8 +177,14 @@ const generateFilteredBookmarkString = function (bookmarkArray) {
 const render = () => {
   console.log('render running');
   if (store.adding) {
-    let html = generateAddNewBookMark();
-    $('.bookmark-main').html(html);
+    if (store.error !== null) {
+      let html = generateAddNewBookMarkWithError();
+      $('.bookmark-main').html(html);
+      store.error = null;
+    } else {
+      let html = generateAddNewBookMark();
+      $('.bookmark-main').html(html);
+    }
   } else if (store.filter === 0) {
     let listHtml = generateBookmarkString(store.items);
 
@@ -195,16 +242,18 @@ const handleNewBookmark = function () {
 
     console.log(postJsonBody);
 
-    api.postBookmarks(postJsonBody).then((newBookmark) => {
-      store.addBookmark(newBookmark);
-      store.adding = false;
-      render();
-    });
-    //   .catch((error) => {
-    //     store.setError(error.message);
-    //     alert(error.message);
-    //     renderError();
-    //   });
+    api
+      .postBookmarks(postJsonBody)
+      .then((newBookmark) => {
+        store.addBookmark(newBookmark);
+        store.adding = false;
+        render();
+      })
+      .catch((error) => {
+        store.error = error.message;
+        render();
+        //     renderError();
+      });
   });
 };
 
@@ -212,10 +261,10 @@ const handleNewBookmark = function () {
 
 const handleFilterRequest = () => {
   $('.filter-button').on('click', function (event) {
-    console.log('clicked to filter');
+    // console.log('clicked to filter');
     let filterRating = $(event.target).siblings('select').val();
     // console.log(filterRating);
-    console.log(`changing ${store.filter} to ${filterRating}`);
+    // console.log(`changing ${store.filter} to ${filterRating}`);
     store.filter = filterRating;
     render();
   });
@@ -258,6 +307,30 @@ const handleCloseDetails = () => {
   });
 };
 
+// HANDLE DELETE BOOKMARK
+
+const handleDeleteBookmark = () => {
+  $('main').on('click', '.delete-bookmark', function (event) {
+    console.log('trying to delete');
+
+    let targetId = $(event.target).closest('li').attr('id');
+
+    api.deleteBookmark(targetId);
+
+    store.findAndDelete(targetId);
+
+    render();
+  });
+};
+
+// HANDLE ERROR CLOSE
+
+const handleErrorClose = () => {
+  $('main').on('click', '#cancel-error', function () {
+    render();
+  });
+};
+
 // BIND EVENT LISTENERS
 
 const bindEventListeners = function () {
@@ -267,8 +340,9 @@ const bindEventListeners = function () {
   handleNewBookmarkCancel();
   handleCloseDetails();
   handleFilterReset();
-  // handleCreateBookmark();
   handleNewBookmark();
+  handleDeleteBookmark();
+  handleErrorClose();
 };
 
 // *************          EXPORT         ***************** //
