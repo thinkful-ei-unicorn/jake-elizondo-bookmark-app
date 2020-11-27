@@ -44,14 +44,14 @@ const generateBookmarkDetailed = function (bookmark) {
    <div class="bookmark-details-header">
   <button class="visit-site-url"><a href="${
     bookmark.url
-  }">Visit Bookmark Site</a></button>
-  <button class="delete-bookmark">Delete this Bookmark</button>
+  }">Visit Site</a></button>
   <div class="listing-rating-info">
     <p>Rating:</p>
     <p class="rating-total">${
       bookmark.rating === null ? 'No rating yet' : bookmark.rating
     }</p>
   </div>
+  <button class="delete-bookmark">Delete</button>
 </div>
 <div class="bookmark-details-description">
   <p>
@@ -159,7 +159,7 @@ const generateBookmarkString = function (bookmarkArray) {
 
 const generateFilteredBookmarkString = function (bookmarkArray) {
   const bookmarkHtml = bookmarkArray.map((bookmark) => {
-    if (bookmark.rating > store.filter) {
+    if (bookmark.rating >= store.filter) {
       if (bookmark.expanded === true) {
         return generateBookmarkDetailed(bookmark);
       } else {
