@@ -2,6 +2,12 @@
   text-align: center;
 }
 
+h2 {
+  text-align: center;
+  font-size: 15px;
+  margin-top: 0px;
+}
+
 /************** MOBILE STYLINGS TO FOLLOW ********************/
 
 /* list main view stylings */
@@ -178,6 +184,12 @@ li:last-child {
 
   * {
     font-family: Lato;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 25px;
+    margin-top: 0px;
   }
 
   body {
