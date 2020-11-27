@@ -4,6 +4,14 @@ const getBookmarks = function () {
   return bookmarkApiFetch(`${BASE_URL}/bookmarks`);
 };
 
+const postBookmarks = function (object) {
+  return bookmarkApiFetch(`${BASE_URL}/bookmarks`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: object,
+  });
+};
+
 function bookmarkApiFetch(...args) {
   let error;
   return fetch(...args)
@@ -26,4 +34,5 @@ function bookmarkApiFetch(...args) {
 
 export default {
   getBookmarks,
+  postBookmarks,
 };

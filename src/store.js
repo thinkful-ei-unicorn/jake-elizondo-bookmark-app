@@ -26,13 +26,6 @@ const findAndUpdate = function (id, object) {
   Object.assign(target, object);
 };
 
-// const filterStore = function () {
-//   console.log(items);
-//   // filter store using filterRating input
-//   items = items.filter((item) => item.rating > filter);
-//   console.log(items);
-// };
-
 export default {
   items,
   adding,

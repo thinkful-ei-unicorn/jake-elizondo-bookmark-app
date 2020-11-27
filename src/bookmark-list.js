@@ -33,12 +33,7 @@ const generateBookmarkDetailed = function (bookmark) {
   return `<li class="js-bookmark-list-element" id="${bookmark.id}">
    <div class="bookmark-info">
      <p class="bookmark-name">${bookmark.title}</p>
-     <div class="listing-rating-info">
-       <p>Rating:</p>
-       <p class="rating-total">${
-         bookmark.rating === null ? 'No rating yet' : bookmark.rating
-       }</p>
-     </div>
+     
      <div class="bookmark-listing-options">
        <button class="view-bookmark-details">
          View Details
@@ -60,7 +55,7 @@ const generateBookmarkDetailed = function (bookmark) {
 </div>
 <div class="bookmark-details-description">
   <p>
-    ${bookmark.desc === null ? 'No description listed' : bookmark.desc}
+    ${bookmark.desc === '' ? 'No description listed' : bookmark.desc}
   </p>
   <button class="close">Close</button>
 </div></div>
@@ -76,11 +71,11 @@ const generateAddNewBookMark = function () {
           id="add-new-bookmark-form"
         >
           <label for="new-name-input">Name your bookmark:</label>
-          <input type="text" name="title" id="new-name-input" required/>
-          <label for="new-url-input">Add new bookmark URL:</label>
-          <input type="text" name="url" id="new-url-input" required/>
+          <input type="text" name="title" id="new-name-input" placeholder="Google" required/>
+          <label for="new-url-input">Add new bookmark URL (please include http:// or https://):</label>
+          <input type="text" name="url" id="new-url-input" placeholder="https://google.com" required/>
           <label for="new-rating">Rate this bookmark:</label>
-          <select name="rating" id="new-rating" class="new-rating-select">
+          <select name="rating" id="new-rating" class="new-rating-select" default="1" required>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -93,12 +88,13 @@ const generateAddNewBookMark = function () {
           <textarea
             name="desc"
             id="new-bookmark-description"
+            default="null"
             cols="30"
             rows="10"
           ></textarea>
           <div class="add-form-buttons">
         <button class="cancel-add-bookmark">Cancel</button>
-        <input type="submit" class="create-bookmark"/>
+        <button type="submit" class="create-bookmark">Create</button>
       </div>
         </form>
       </div>
@@ -180,33 +176,36 @@ const handleNewBookmarkCancel = () => {
 
 // SERIALIZE FORM INPUT AS JSON
 
-// $.fn.extend({
-//   serializeJson: function () {
-//     const formData = new FormData(this[0]);
-//     const o = {};
-//     formData.forEach((val, name) => (o[name] = val));
-//     return JSON.stringify(o);
-//   },
-// });
+$.fn.extend({
+  serializeJson: function () {
+    const formData = new FormData(this[0]);
+    const o = {};
+    formData.forEach((val, name) => (o[name] = val));
+    return JSON.stringify(o);
+  },
+});
 
 // HANDLE ADD NEW CREATE
 
-const handleCreateBookmark = function () {
-  $('#add-new-bookmark-form').on(
-    'submit',
-    '.create-bookmark',
-    function (event) {
-      event.preventDefault();
+const handleNewBookmark = function () {
+  $('main').submit(function (e) {
+    e.preventDefault();
 
-      console.log('clicked to submit and create');
+    let postJsonBody = $(e.target).serializeJson();
 
-      let newName = $('#new-name-input').val();
+    console.log(postJsonBody);
 
-      // let json = $(event.target).serializeJson();
-
-      console.log(newName);
-    }
-  );
+    api.postBookmarks(postJsonBody).then((newBookmark) => {
+      store.addBookmark(newBookmark);
+      store.adding = false;
+      render();
+    });
+    //   .catch((error) => {
+    //     store.setError(error.message);
+    //     alert(error.message);
+    //     renderError();
+    //   });
+  });
 };
 
 // HANDLE FILTER REQUEST
@@ -237,7 +236,6 @@ const handleFilterReset = () => {
 const handleViewDetails = () => {
   $('main').on('click', '.view-bookmark-details', function (event) {
     console.log('clicked to view details');
-    // identify id of bookmark clicked on
 
     let targetId = $(event.target).closest('li').attr('id');
     store.findAndUpdate(targetId, { expanded: true });
@@ -269,7 +267,8 @@ const bindEventListeners = function () {
   handleNewBookmarkCancel();
   handleCloseDetails();
   handleFilterReset();
-  handleCreateBookmark();
+  // handleCreateBookmark();
+  handleNewBookmark();
 };
 
 // *************          EXPORT         ***************** //
