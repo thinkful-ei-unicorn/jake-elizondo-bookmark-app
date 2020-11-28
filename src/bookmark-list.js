@@ -73,7 +73,7 @@ const generateAddNewBookMark = function () {
           <label for="new-name-input">Name your bookmark:</label>
           <input type="text" name="title" id="new-name-input" placeholder="Google" required/>
           <label for="new-url-input">Add new bookmark URL (please include http:// or https://):</label>
-          <input type="text" name="url" id="new-url-input" placeholder="https://google.com" required/>
+          <input type="text" name="url" id="new-url-input" value="http://" required/>
           <label for="new-rating">Rate this bookmark:</label>
           <select name="rating" id="new-rating" class="new-rating-select" default="1" required>
             <option value="1">1</option>
@@ -114,7 +114,7 @@ const generateAddNewBookMarkWithError = () => {
     <label for="new-name-input">Name your bookmark:</label>
     <input type="text" name="title" id="new-name-input" placeholder="Google" required/>
     <label for="new-url-input">Add new bookmark URL (please include http:// or https://):</label>
-    <input type="text" name="url" id="new-url-input" placeholder="https://google.com" required/>
+    <input type="text" name="url" id="new-url-input" value="http://" required/>
     <label for="new-rating">Rate this bookmark:</label>
     <select name="rating" id="new-rating" class="new-rating-select" default="1" required>
       <option value="1">1</option>
